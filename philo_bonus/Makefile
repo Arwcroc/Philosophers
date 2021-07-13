@@ -6,11 +6,13 @@
 #    By: tefroiss <tefroiss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/29 17:18:43 by tefroiss          #+#    #+#              #
-#    Updated: 2021/07/12 12:50:46 by tefroiss         ###   ########.fr        #
+#    Updated: 2021/07/13 15:02:34 by tefroiss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	philo_bonus
+
+OS			=	$(shell uname)
 
 SRCS		=	srcs/basic/ft_args.c		\
 				srcs/basic/ft_atoi.c		\
@@ -24,12 +26,18 @@ SRCS		=	srcs/basic/ft_args.c		\
 				srcs/philo_act.c			\
 				srcs/philo_act_fork.c
 				
+ifeq ($(OS), Linux)
+	SRCS	+=	srcs/free_all_linux.c
+else
+	SRCS	+=	srcs/free_all_mac.c
+endif
+
 MAIN 		= 	srcs/main.c
 
 OBJS_MAIN 	= 	$(MAIN:.c=.o)
 OBJS		=	$(SRCS:.c=.o)
 
-CC			=	clang
+CC			=	gcc
 
 CFLAGS		+=	-Wall -Wextra -Werror
 

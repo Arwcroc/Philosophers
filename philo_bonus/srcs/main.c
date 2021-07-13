@@ -6,37 +6,11 @@
 /*   By: tefroiss <tefroiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 17:18:39 by tefroiss          #+#    #+#             */
-/*   Updated: 2021/07/09 14:40:10 by tefroiss         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:07:22 by tefroiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo_bonus.h"
-
-void	philo_pass_away(t_philo *philo, t_state status)
-{
-	int	timestamp;
-
-	philo->status = status;
-	sem_wait(philo->lock_output);
-	timestamp = get_timestamp(philo);
-	if (*philo->alive)
-	{
-		if (philo->status == DIED)
-		{
-			printf("%d ... Philo %u ... %s", timestamp, philo->index, \
-				"sadly DEAD... Rip in peace.\n");
-			*philo->alive = FALSE;
-			exit(1);
-		}
-		else if (philo->status == STOP)
-		{
-			printf("%d ... Philo %u ... %s", timestamp, philo->index, \
-				"STOP everything. I'm not Gargantua. Just a Philo !\n");
-			sem_post(philo->lock_output);
-			exit(0);
-		}
-	}
-}
 
 void	philo_do_something(t_philo *philo, void (*ph_action)(t_philo *))
 {
