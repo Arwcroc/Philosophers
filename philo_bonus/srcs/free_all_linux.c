@@ -19,19 +19,29 @@ void	its_the_end(t_table *table)
 		free(table->philo);
 		table->philo = NULL;
 		table = NULL;
-		sem_unlink("fork");
 		sem_close(table->fork);
+		sem_unlink("fork");
 	}
-	sem_unlink("lock_output");
 	sem_close(table->lock_output);
+	sem_unlink("lock_output");
 }
 
-void	ft_clean_sem(t_philo *philo)
+void	clean_semaphore(t_philo *philo)
 {
 	sem_close(philo->lock_output);
 	sem_close(philo->fork);
 	sem_unlink("fork");
 	sem_unlink("lock_output");
+}
+
+void	clean_table(t_table	*table)
+{
+	if (table && table->philo)
+	{
+		free(table->philo);
+		table->philo = NULL;
+		table = NULL;
+	}
 }
 
 void	philo_pass_away(t_philo *philo, t_state status)
@@ -49,6 +59,7 @@ void	philo_pass_away(t_philo *philo, t_state status)
 				"sadly DEAD... Rip in peace.\n");
 			*philo->alive = FALSE;
 			clean_semaphore(philo);
+			clean_table(philo->table);
 			exit(1);
 		}
 		else if (philo->status == STOP)
@@ -57,6 +68,7 @@ void	philo_pass_away(t_philo *philo, t_state status)
 				"STOP everything. I'm not Gargantua. Just a Philo !\n");
 			sem_post(philo->lock_output);
 			clean_semaphore(philo);
+			clean_table(philo->table);
 			exit(0);
 		}
 	}

@@ -37,7 +37,7 @@ MAIN 		= 	srcs/main.c
 OBJS_MAIN 	= 	$(MAIN:.c=.o)
 OBJS		=	$(SRCS:.c=.o)
 
-CC			=	gcc
+CC			=	clang
 
 CFLAGS		+=	-Wall -Wextra -Werror
 

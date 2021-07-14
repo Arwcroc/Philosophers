@@ -17,11 +17,11 @@ void	its_the_end(t_table *table)
 	if (table && table->philo)
 	{
 		free(table->philo);
-		sem_unlink("fork");
 		sem_close(table->fork);
+		sem_unlink("fork");
 	}
-	sem_unlink("lock_output");
 	sem_close(table->lock_output);
+	sem_unlink("lock_output");
 }
 
 void	philo_pass_away(t_philo *philo, t_state status)

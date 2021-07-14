@@ -49,6 +49,7 @@ typedef enum e_state
 	STOP
 }					t_state;
 
+struct 				s_table;
 typedef struct s_philo
 {
 	int				index;
@@ -62,6 +63,7 @@ typedef struct s_philo
 	sem_t			*lock_output;
 	pthread_t		threads;
 	t_args			*args;
+	struct s_table	*table;
 	pid_t			fork_philo;
 }					t_philo;
 
@@ -177,5 +179,8 @@ void	its_the_end(t_table *table);
 void	control_the_mind(t_table *table);
 void	*create_phi_thread(void *philo);
 void	launch_engine(t_table *table);
+
+void	clean_semaphore(t_philo *philo);
+void	clean_table(t_table	*table);
 
 #endif

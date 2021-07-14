@@ -28,6 +28,7 @@ void	ft_philo_init(int i, t_args *args, t_philo *philo, t_table *table)
 	philo->alive = &table->alive;
 	philo->args = args;
 	philo->many_eat = args->n_eat;
+	//philo->table = table;
 	if (philo->index % 2 == 0)
 		philo->status = FORK;
 	else
@@ -61,6 +62,7 @@ void	ft_get_philo(t_table *table)
 		while (i < table->args.n_philo)
 		{
 			ft_philo_init(i, &table->args, &table->philo[i], table);
+			table->philo[i].table = table;
 			i++;
 		}
 	}

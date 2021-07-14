@@ -50,7 +50,8 @@ void	control_the_mind(t_table *table)
 			break ;
 	}
 	del_philo_th(table);
-	its_the_end(table);
+	clean_semaphore(table->philo);
+	clean_table(table);
 }
 
 void	create_phi_fork(t_philo *philo, t_table *table)
