@@ -6,23 +6,11 @@
 /*   By: tefroiss <tefroiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:34 by tefroiss          #+#    #+#             */
-/*   Updated: 2021/07/13 15:58:38 by tefroiss         ###   ########.fr       */
+/*   Updated: 2021/07/15 11:22:17 by tefroiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo_bonus.h"
-
-// void	its_the_end(t_table *table)
-// {
-// 	if (table && table->philo)
-// 	{
-// 		free(table->philo);
-// 		sem_unlink("fork");
-// 		sem_close(table->fork);
-// 	}
-// 	sem_unlink("lock_output");
-// 	sem_close(table->lock_output);
-// }
 
 void	del_philo_th(t_table *table)
 {

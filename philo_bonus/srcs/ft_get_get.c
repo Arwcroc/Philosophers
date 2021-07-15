@@ -6,7 +6,7 @@
 /*   By: tefroiss <tefroiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:03:56 by tefroiss          #+#    #+#             */
-/*   Updated: 2021/07/09 15:21:49 by tefroiss         ###   ########.fr       */
+/*   Updated: 2021/07/15 11:31:52 by tefroiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_philo_init(int i, t_args *args, t_philo *philo, t_table *table)
 	philo->alive = &table->alive;
 	philo->args = args;
 	philo->many_eat = args->n_eat;
-	//philo->table = table;
 	if (philo->index % 2 == 0)
 		philo->status = FORK;
 	else

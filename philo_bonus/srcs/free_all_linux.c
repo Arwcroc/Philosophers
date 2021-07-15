@@ -6,7 +6,7 @@
 /*   By: tefroiss <tefroiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 12:12:28 by tefroiss          #+#    #+#             */
-/*   Updated: 2021/07/13 16:06:48 by tefroiss         ###   ########.fr       */
+/*   Updated: 2021/07/15 11:38:51 by tefroiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	its_the_end(t_table *table)
 
 void	clean_semaphore(t_philo *philo)
 {
+	if (philo->status == DIED)
+		*philo->alive = FALSE;
+	pthread_join(philo->threads, NULL);
 	sem_close(philo->lock_output);
 	sem_close(philo->fork);
 	sem_unlink("fork");
@@ -57,7 +60,6 @@ void	philo_pass_away(t_philo *philo, t_state status)
 		{
 			printf("%d ... Philo %u ... %s", timestamp, philo->index, \
 				"sadly DEAD... Rip in peace.\n");
-			*philo->alive = FALSE;
 			clean_semaphore(philo);
 			clean_table(philo->table);
 			exit(1);

@@ -6,7 +6,7 @@
 /*   By: tefroiss <tefroiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:25:42 by tefroiss          #+#    #+#             */
-/*   Updated: 2021/07/13 15:54:23 by tefroiss         ###   ########.fr       */
+/*   Updated: 2021/07/15 11:33:30 by tefroiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef enum e_state
 	STOP
 }					t_state;
 
-struct 				s_table;
+struct				s_table;
 typedef struct s_philo
 {
 	int				index;
@@ -77,7 +77,7 @@ typedef struct s_table
 	int				sema_init;
 }					t_table;
 
-typedef void	(*t_actions)(t_philo *philo);
+typedef void		(*t_actions)(t_philo *philo);
 
 ////////////////////////////////
 //   ____            _        //
@@ -107,7 +107,6 @@ int		ft_isspace(char c);
 void	go_phiphi(t_philo *philo);
 void	table_init(int ac, char **av, t_table *table);
 void	philo_do_something(t_philo *philo, void (*ph_action)(t_philo *));
-void	philo_pass_away(t_philo *philo, t_state status);
 
 ////////////////////////////////////////////////
 //   ____  _     _ _                    _     //
@@ -175,12 +174,23 @@ long	transform_timeval_ms(struct timeval *time);
 //                                                                //
 ////////////////////////////////////////////////////////////////////
 
-void	its_the_end(t_table *table);
 void	control_the_mind(t_table *table);
 void	*create_phi_thread(void *philo);
 void	launch_engine(t_table *table);
 
+////////////////////////////////////////
+//   ______                     _ _   //
+//  |  ____|                   | | |  //
+//  | |__ _ __ ___  ___    __ _| | |  //
+//  |  __| '__/ _ \/ _ \  / _` | | |  //
+//  | |  | | |  __/  __/ | (_| | | |  //
+//  |_|  |_|  \___|\___|  \__,_|_|_|  //
+//                                    //
+////////////////////////////////////////
+
+void	its_the_end(t_table *table);
 void	clean_semaphore(t_philo *philo);
 void	clean_table(t_table	*table);
+void	philo_pass_away(t_philo *philo, t_state status);
 
 #endif
